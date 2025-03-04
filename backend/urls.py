@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import add_book, list_books, delete_book
+from .views import add_book, list_books, delete_book, retry_failed_webhooks
 
 urlpatterns = [
-    path("books/", list_books, name="list-books"),
     path("books/add/", add_book, name="add-book"),
+    path("books/list/", list_books, name="list-books"),
     path("books/delete/<str:title>/", delete_book, name="delete-book"),
+    path("webhook/retry/", retry_failed_webhooks, name="retry-webhooks"),
 ]

@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8001:8001"
+    depends_on:
+      - mongo
+    environment:
+      - DATABASE_URL=mongodb://mongo:27017/library_backend
+    networks:
+      - library-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - backend
+    environment:
+      - DATABASE_URL=postgres://postgres:5432/library_frontend
+    networks:
+      - library-network
+
+  mongo:
+    image: mongo
+    container_name: mongo_container
+    ports:
+      - "27017:27017"
+    networks:
+      - library-network
+
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    environment:
+      POSTGRES_DB: library_frontend
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 08027146369Aos@@@
+    ports:
+      - "5432:5432"
+    networks:
+      - library-network
+
+networks:
+  library-network:
+    driver: bridge

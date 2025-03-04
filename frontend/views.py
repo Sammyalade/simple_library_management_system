@@ -36,3 +36,16 @@ def borrow_book(request, book_id):
         return Response({"error": "Book not available"}, status=400)
     except User.DoesNotExist:
         return Response({"error": "User not found"}, status=400)
+
+
+@api_view(["POST"])
+def receive_book_webhook(request):
+    data = request.data
+    Book.objects.create(
+        title=data["title"],
+        author=data["author"],
+        publisher=data["publisher"],
+        category=data["category"],
+        is_available=True
+    )
+    return Response({"message": "Book added to frontend successfully!"})

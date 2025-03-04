@@ -1,0 +1,6 @@
+Django
+djangorestframework
+gunicorn
+requests
+pymongo  # Only for backend
+psycopg2-binary  # Only for frontend
