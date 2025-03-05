@@ -23,3 +23,8 @@ class AdminBook:
     @staticmethod
     def delete(title):
         settings.MONGO_DB["books"].delete_one({"title": title})
+
+    @staticmethod
+    def clear():
+        """Clears all books from the collection."""
+        settings.MONGO_DB["books"].delete_many({})

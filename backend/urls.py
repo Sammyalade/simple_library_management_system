@@ -5,5 +5,5 @@ urlpatterns = [
     path("books/add/", add_book, name="add-book"),
     path("books/list/", list_books, name="list-books"),
     path("books/delete/<str:title>/", delete_book, name="delete-book"),
-    path("webhook/retry/", retry_failed_webhooks, name="retry-webhooks"),
+    path("webhooks/retry/", retry_failed_webhooks, name="retry-webhooks"),
 ]
